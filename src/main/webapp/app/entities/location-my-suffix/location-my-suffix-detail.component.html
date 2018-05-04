@@ -1,0 +1,48 @@
+
+<div *ngIf="location">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.location.detail.title">Location</span> {{location.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.location.streetNumber">Street Number</span></dt>
+        <dd>
+            <span>{{location.streetNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.location.streetAddress">Street Address</span></dt>
+        <dd>
+            <span>{{location.streetAddress}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.location.postalCode">Postal Code</span></dt>
+        <dd>
+            <span>{{location.postalCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.location.city">City</span></dt>
+        <dd>
+            <span>{{location.city}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.location.stateProvince">State Province</span></dt>
+        <dd>
+            <span>{{location.stateProvince}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.location.country">Country</span></dt>
+        <dd>
+            <div *ngIf="location.countryId">
+                <a [routerLink]="['/country-my-suffix', location.countryId]">{{location.countryId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'location-my-suffix/'+ location.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,62 @@
+
+<div *ngIf="employee">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.employee.detail.title">Employee</span> {{employee.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.firstName" [ngbTooltip]="'jhipsterSampleApplicationApp.employee.help.firstName' | translate">First Name</span></dt>
+        <dd>
+            <span>{{employee.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{employee.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.email">Email</span></dt>
+        <dd>
+            <span>{{employee.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{employee.phoneNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.hireDate">Hire Date</span></dt>
+        <dd>
+            <span>{{employee.hireDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.salary">Salary</span></dt>
+        <dd>
+            <span>{{employee.salary}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.commissionPct">Commission Pct</span></dt>
+        <dd>
+            <span>{{employee.commissionPct}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.department">Department</span></dt>
+        <dd>
+            <div *ngIf="employee.departmentId">
+                <a [routerLink]="['/department-my-suffix', employee.departmentId]">{{employee.departmentId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.employee.manager">Manager</span></dt>
+        <dd>
+            <div *ngIf="employee.managerId">
+                <a [routerLink]="['/employee-my-suffix', employee.managerId]">{{employee.managerId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'employee-my-suffix/'+ employee.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

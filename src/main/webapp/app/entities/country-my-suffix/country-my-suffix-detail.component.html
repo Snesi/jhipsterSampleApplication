@@ -1,0 +1,32 @@
+
+<div *ngIf="country">
+    <h2><span jhiTranslate="jhipsterSampleApplicationApp.country.detail.title">Country</span> {{country.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.country.countryName">Country Name</span></dt>
+        <dd>
+            <span>{{country.countryName}}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipsterSampleApplicationApp.country.region">Region</span></dt>
+        <dd>
+            <div *ngIf="country.regionId">
+                <a [routerLink]="['/region-my-suffix', country.regionId]">{{country.regionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'country-my-suffix/'+ country.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
