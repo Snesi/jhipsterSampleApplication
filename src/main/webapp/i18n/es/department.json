@@ -1,0 +1,24 @@
+
+{
+    "jhipsterSampleApplicationApp": {
+        "department" : {
+            "home": {
+                "title": "Departments",
+                "createLabel": "Crear nuevo Department",
+                "createOrEditLabel": "Crear o editar Department"
+            },
+            "created": "Un nuevo Department ha sido creado con el identificador {{ param }}",
+            "updated": "Un Department ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Department ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Department {{ id }}?"
+            },
+            "detail": {
+                "title": "Department"
+            },
+            "departmentName": "Department Name",
+            "location": "Location",
+            "employee": "Employee"
+        }
+    }
+}

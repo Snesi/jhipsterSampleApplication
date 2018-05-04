@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span jhiTranslate="jhipsterSampleApplicationApp.employee.home.title">Employees</span>
+        <button class="btn btn-primary float-right jh-create-entity create-employee-my-suffix" [routerLink]="['/', { outlets: { popup: ['employee-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="jhipsterSampleApplicationApp.employee.home.createLabel">
+            Create new Employee
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="employees">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="jhipsterSampleApplicationApp.employee.firstName">First Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="jhipsterSampleApplicationApp.employee.lastName">Last Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="email"><span jhiTranslate="jhipsterSampleApplicationApp.employee.email">Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phoneNumber"><span jhiTranslate="jhipsterSampleApplicationApp.employee.phoneNumber">Phone Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hireDate"><span jhiTranslate="jhipsterSampleApplicationApp.employee.hireDate">Hire Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="salary"><span jhiTranslate="jhipsterSampleApplicationApp.employee.salary">Salary</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="commissionPct"><span jhiTranslate="jhipsterSampleApplicationApp.employee.commissionPct">Commission Pct</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="departmentId"><span jhiTranslate="jhipsterSampleApplicationApp.employee.department">Department</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="managerId"><span jhiTranslate="jhipsterSampleApplicationApp.employee.manager">Manager</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let employee of employees ;trackBy: trackId">
+                <td><a [routerLink]="['../employee-my-suffix', employee.id ]">{{employee.id}}</a></td>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.phoneNumber}}</td>
+                <td>{{employee.hireDate | date:'medium'}}</td>
+                <td>{{employee.salary}}</td>
+                <td>{{employee.commissionPct}}</td>
+                <td>
+                    <div *ngIf="employee.departmentId">
+                        <a [routerLink]="['../department-my-suffix', employee.departmentId  ]" >{{employee.departmentId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="employee.managerId">
+                        <a [routerLink]="['../employee-my-suffix', employee.managerId  ]" >{{employee.managerId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../employee-my-suffix', employee.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'employee-my-suffix/'+ employee.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'employee-my-suffix/'+ employee.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
